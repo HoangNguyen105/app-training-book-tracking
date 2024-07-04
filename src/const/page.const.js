@@ -1,5 +1,10 @@
 export const ROUTE_PATH = {
   home: "/",
-  search: "/search",
   detail: "/detail/:id",
+};
+
+export const SHELF = {
+  currentlyReading: "currentlyReading",
+  wantToRead: "wantToRead",
+  read: "read",
 };

@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { BookShelf } from "../components/book-shelf";
 import { search } from "../services/BooksAPI";
-import { Link } from "react-router-dom";
-import { ROUTE_PATH } from "../const/page.const";
 
-export const Search = () => {
+export const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const [listBookSearch, setListBookSearch] = useState([]);
+  const { showSearchCallBack } = props;
 
   const getBookSearch = async (event) => {
     if (!event) {
@@ -20,15 +19,19 @@ export const Search = () => {
       console.log(results);
       return;
     }
+
     setListBookSearch(results);
+  };
+  const setShowSearchpage = () => {
+    showSearchCallBack?.();
   };
 
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <Link to={ROUTE_PATH.home} className="close-search">
+        <a className="close-search" onClick={setShowSearchpage}>
           Close
-        </Link>
+        </a>
         <div className="search-books-input-wrapper">
           <input
             type="text"
